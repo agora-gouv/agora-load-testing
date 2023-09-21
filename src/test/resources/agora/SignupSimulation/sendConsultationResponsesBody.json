@@ -1,0 +1,55 @@
+{
+    "consultationId":"6d85522a-ee71-11ed-a05b-0242ac120003",
+    "responses":[
+       {
+          "questionId":"e271ed7a-ef05-11ed-a05b-0242ac120003",
+          "choiceIds":[
+             "f5dd076e-ef05-11ed-a05b-0242ac120003"
+          ],
+          "responseText":""
+       },
+       {
+          "questionId":"48d3c502-ef06-11ed-a05b-0242ac120003",
+          "choiceIds":[
+             "84f7f70e-ef08-11ed-a05b-0242ac120011"
+          ],
+          "responseText":""
+       },
+       {
+          "questionId":"e52c5868-ef08-11ed-a05b-0242ac120003",
+          "choiceIds":[
+             "1b52a816-ef09-11ed-a05b-0242ac120003"
+          ],
+          "responseText":""
+       },
+       {
+          "questionId":"91c3411c-ef0a-11ed-a05b-0242ac120003",
+          "choiceIds":[
+             "ac24b428-ef0a-11ed-a05b-0242ac120012",
+             "ac24b428-ef0a-11ed-a05b-0242ac120013"
+          ],
+          "responseText":""
+       },
+       {
+          "questionId":"ac24b428-ef0a-11ed-a05b-0242ac120015",
+          "choiceIds":[
+             
+          ],
+          "responseText":"Non déso"
+       },
+       {
+          "questionId":"91c3411c-ef0a-11ed-a05b-0242ac120100",
+          "choiceIds":[
+             "ac24b428-ef0a-11ed-a05b-0242ac121003"
+          ],
+          "responseText":""
+       },
+       {
+          "questionId":"ac24b428-ef0a-11ed-a05b-0242ac120020",
+          "choiceIds":[
+             
+          ],
+          "responseText":"Non déso"
+       }
+    ]
+ }

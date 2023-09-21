@@ -1,0 +1,7 @@
+package agora
+
+class AverageUserSimulation {
+
+
+
+}
