@@ -10,7 +10,7 @@ class AllSimulation : Simulation() {
 
     private val randomFcmTokenFeeder = generateSequence {
         mapOf(
-            "FCM_TOKEN" to java.util.UUID.randomUUID().toString(),
+            "FCM_TOKEN" to "GATLING_TESTS",
             "CONSULTATION_ID" to "ce070c8b-3fcb-4a37-946a-0d2bcc059c57",
             "QAG_RESPONSE_ID" to "f29c5d6f-9838-4c57-a7ec-0612145bb0c8",
             "QAG_ID_1" to "506586a9-748a-4eff-898e-e856e06e69ba",
@@ -20,14 +20,14 @@ class AllSimulation : Simulation() {
     }.iterator()
 
     private val httpProtocol = http
-        .baseUrl("https://https://agora-prod-pr257.osc-secnum-fr1.scalingo.io/")
+        .baseUrl("https://agora-prod-pr257.osc-secnum-fr1.scalingo.io/")
         .acceptHeader("*/*;q=0.8")
         .acceptEncodingHeader("gzip, deflate, br")
         .acceptLanguageHeader("fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3")
         .userAgentHeader("fr.gouv.agora/Gatling/1.1")
 
-    private val sendFcmToken = exec(
-        http("register_fcm_token")
+    private val signup = exec(
+        http("signup")
             .post("/signup")
             .headers(
                 mapOf(
@@ -120,7 +120,7 @@ class AllSimulation : Simulation() {
 
     private val scn = scenario("AllSimulation").feed(randomFcmTokenFeeder)
         .exec(
-            sendFcmToken,
+            signup,
             loadConsultations,
             loadOneConsultation,
             loadConsultationQuestions,
