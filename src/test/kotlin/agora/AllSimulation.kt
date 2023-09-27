@@ -118,6 +118,27 @@ class AllSimulation : Simulation() {
         ).pause(2)
     }
 
+    private fun supportQuestion(questionNumber: Int, questionId: String): ChainBuilder {
+        return exec(
+            http("support_qag_${questionNumber}")
+                .post("/qags/${questionId}/support")
+                .header("Authorization", "Bearer #{JWT_TOKEN}")
+                .check(status().shouldBe(200))
+        ).pause(1)
+    }
+
+    private fun filterQuestionsByThematique(
+        thematiqueLabel: String,
+        thematiqueId: String,
+    ): ChainBuilder {
+        return exec(
+            http("filter_qag_on_thematique_${thematiqueLabel}")
+                .get("/qags?thematiqueId=${thematiqueId}")
+                .header("Authorization", "Bearer #{JWT_TOKEN}")
+                .check(status().shouldBe(200))
+        ).pause(2)
+    }
+
     private val scn = scenario("AllSimulation").feed(randomFcmTokenFeeder)
         .exec(
             signup,
@@ -131,11 +152,17 @@ class AllSimulation : Simulation() {
             loadThematiques,
             loadAQuestionWithGovAnswer,
             loadQuestion(questionNumber = 1, "#{QAG_ID_1}"),
+            supportQuestion(questionNumber = 1, "#{QAG_ID_1}"),
             loadQuestion(questionNumber = 2, "#{QAG_ID_2}"),
+            supportQuestion(questionNumber = 2, "#{QAG_ID_2}"),
             loadQuestion(questionNumber = 3, "#{QAG_ID_3}"),
+            supportQuestion(questionNumber = 3, "#{QAG_ID_3}"),
+            filterQuestionsByThematique(thematiqueLabel = "Démocratie", thematiqueId = "30671310-ee62-11ed-a05b-0242ac120003"),
+            filterQuestionsByThematique(thematiqueLabel = "Sécu", thematiqueId = "b276606e-f251-454e-9a73-9b70a6f30bfd"),
+            filterQuestionsByThematique(thematiqueLabel = "TransitionEco", thematiqueId = "bb051bf2-644b-47b6-9488-7759fa727dc0"),
         )
 
     init {
-        setUp(scn.injectOpen(rampUsers(1000).during(60))).protocols(httpProtocol)
+        setUp(scn.injectOpen(rampUsers(1500).during(60))).protocols(httpProtocol)
     }
 }
